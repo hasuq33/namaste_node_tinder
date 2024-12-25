@@ -1,62 +1,32 @@
 const express = require('express');
+const connectDB =require("./config/database"); 
 const { adminAuth , userAuth} = require("./middlewares/auth")
-
 const app = express(); 
+const User = require("./models/user.model"); 
 
-app.get("/admin", adminAuth);
+app.post("/signup",async (req, res)=>{
 
-app.get("/admin/getAllData",adminAuth,(req,res)=>{
-    // Logic of checking if the request is authorized
-
-    const token = "harshiv"; 
-    const isAuthorized = token === "harshi";
-    if(isAuthorized){
-        res.send("All Data Send"); 
-    }else{
-        res.status(401).send("Unauthorized request");
-    }
+    // Creating a new instance of the User Model
+    const user = new User({
+        firstName: "Harshiv", 
+        lastName: "Joshi",
+        emailId: "harshivjoshi1234@gamil.com",
+        password:"Harshi10",
+    })
+try {
+    await user.save();
+    res.send("User added successfully!");
+} catch (error) {
+    res.status(400).send("Error saving the User: "+ error.message);
+}
+    
 })
 
-app.get("/user_test",userAuth,(req , res, upnext)=>{
-    console.log("User Login Test Sucessfully");
-    upnext();
-},(req, res)=>{
-    res.send({"status":"Yes Your Data Was Successful"});
+connectDB().then(()=>{
+    console.log("Db is connected!");
+    app.listen(3000,()=>{
+        console.log("Server is Listening");
+    });
+}).catch((error)=>{
+    console.log("Error: " + error.message);
 })
-
-
-app.use("/user",userAuth,(req, res,next)=>{
-    next();
-    res.send("First Response"); 
-},(req, res)=>{
-    res.send("Second Response");
-})
-
-app.get("/hello/:userID",userAuth,(req, res)=>{
-    console.log(req.params)
-    console.log(req.query)
-    res.send("Hello from the Server Get Request");
-})
-
-app.post("/hello",userAuth,(req, res)=>{
-    res.send("Hello from the Server Post Request");
-})
-
-app.delete("/hello",userAuth,(req, res)=>{
-    res.send("Hello from the Server Delete Request");
-});
-
-app.patch("/hello",(req, res)=>{
-    res.send("Hello from the Server Patch Request");
-});
-
-app.get(/a/,(req, res)=>{
-    res.send({'data':"A is Exists!"});
-})
-
-app.use("/",(req,res)=>{
-    res.send("Hello From the server");
-})
-app.listen(3000,()=>{
-    console.log("Server is Listening");
-});
