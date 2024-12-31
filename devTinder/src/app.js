@@ -9,9 +9,9 @@ app.use(express.json());
 
 app.post("/signup",async (req, res)=>{
     // Creating a new instance of the User Model
-    const user = new User(req.body)
-try {
-    await user.save();
+    try {
+        console.log("Request Body: "+ req);
+    const user = await User.create(req.body);
     res.send("User added successfully!");
 } catch (error) {
     res.status(400).send("Error saving the User: "+ error.message);
@@ -63,16 +63,25 @@ app.delete("/user",async (req , res)=>{
 })
 
 // Update User Documents
-app.patch("/user",async (req , res)=>{
-    const userID = req.body.id;
-    console.log(userID);
+app.patch("/user/:userId",async (req , res)=>{
+    const userID = req.params?.userId;
+    const data = req.body;
     if(!userID) res.status(404).send("Please enter a user ID");
     try {
-        const user = await User.findByIdAndUpdate(userID,req.body);
+        const ALLOWER_UPDATES = ['photoUrl',"about","gender","age"]; 
+        const isUpdateAlllowed = Object.keys(data).every((k)=> !ALLOWER_UPDATES.includes(k)); 
+        if(!isUpdateAlllowed) throw new Error("Fields are not Allowed to Update!");
+        
+        if(data?.skills.length > 10){
+            throw new Error("Skills Can not be more than 10")
+        }
+        
+        const user = await User.findByIdAndUpdate(userID,req.body,{runValidators:true});
         res.send("User updated successfully updated");
         
     } catch (error) {
         console.log("Error: " + error.message);
+        res.status(404).send("User Update Failed: "+error.message);
     }
 })
 

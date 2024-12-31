@@ -8,3 +8,4 @@ DevTinder Project
 - Read about app.use and app.all routes
 - Route has paramaters like (err, req , res , next) but we can use like (req , res , next) but 
  always write a trycatch function
+ - Use Validator Library for validating email , password and url 
