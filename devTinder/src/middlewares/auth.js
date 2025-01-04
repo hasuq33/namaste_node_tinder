@@ -1,23 +1,25 @@
-const adminAuth = (req,res,next) =>{
-    const token = "harshiv"; 
-    const isAdmin = token === "harshiv";
+const jwt = require("jsonwebtoken"); 
+const User = require("../models/user.model");
 
-    if(!isAdmin){
-        res.status(403).send("Unauthorized Token");
-    }else{
+const userAuth = async (req, res, next) =>{
+    try {
+        const { token } = req.cookies;
+        if(!token){
+            throw new Error("Token is not Valid");
+        }
+        const decodeObj = await jwt.verify(token,"test@1234"); 
+        const {_id} = decodeObj;
+
+        const user = await User.findById(_id);
+        if(!user){
+            throw new Error("User is not Found");
+        }
+        req.user = user;
         next();
+
+    } catch (error) {
+        res.status(400).send("Error: "+ error.message);
     }
 }
 
-const userAuth = (req, res, next) =>{
-    const token = "user";
-    const user = token === "user"; 
-
-    if(!user){
-        res.status(403).send("User not found");
-    }else{
-        next();
-    }
-}
-
-module.exports = {adminAuth,userAuth};
+module.exports = {userAuth};

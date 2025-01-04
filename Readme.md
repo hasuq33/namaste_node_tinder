@@ -9,3 +9,6 @@ DevTinder Project
 - Route has paramaters like (err, req , res , next) but we can use like (req , res , next) but 
  always write a trycatch function
  - Use Validator Library for validating email , password and url 
+ - We have store the password in hash form using bcrypt library 
+
+- Note: use the cookieparser middleware for getting for the cookie from the browser which parse the cookie 
