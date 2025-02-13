@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB =require("./config/database"); 
 const app = express(); 
 const cookieParser =require("cookie-parser");
+const userRouter = require("./routes/user");
 
 // Here we use express.json middleware to parse the json Data
 app.use(express.json());
@@ -14,6 +15,7 @@ const requestRouter = require("./routes/requests");
 app.use("/",authRouter); 
 app.use("/",profileRouter); 
 app.use("/",requestRouter); 
+app.use("/",userRouter);
 
 
 connectDB().then(()=>{
