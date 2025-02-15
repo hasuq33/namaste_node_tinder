@@ -8,13 +8,11 @@
 ## profileRouter
 - GET /profile/view
 - PATCH/profile/edit
-- PATCH/profile/password
+- PATCH/profile/password #TODO: Create a Forgot Password API doneby Yourself
 
 ## connetionRequestRouter
 - POST /request/send/intrested/:userId
-- POST /request/send/ignored/:userId
-- POST /request/review/accepted/:requestId
-- POST /request/review/rejected/:requestId
+- POST /request/review/:status/:requestId
 
 ## userRouter
 - GET /user/connection 
@@ -22,3 +20,11 @@
 - GET /feed - Gets you the profiles of other users on platforms
 
 Status: ignore, intrested , accepted , rejected
+
+# DevTinder Web
+
+- Create  a Vite + React application
+- Remove unecessary code and create a hello world app
+- Install Tailwind 3.4 version 
+- Install Daisy UI
+- Add Navbar Component IN it

@@ -12,3 +12,5 @@ DevTinder Project
  - We have store the password in hash form using bcrypt library 
 
 - Note: use the cookieparser middleware for getting for the cookie from the browser which parse the cookie 
+
+- Unique: True in schema automatically add a unique index in mongodb or you can add intex equal to true manually add in Schema 
