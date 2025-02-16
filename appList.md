@@ -28,3 +28,12 @@ Status: ignore, intrested , accepted , rejected
 - Install Tailwind 3.4 version 
 - Install Daisy UI
 - Add Navbar Component IN it
+- Create a BrowserRouter and > Routes > Route=/ Body > RouteChildren
+- Create the Outlet in Body Component and Footer 
+
+Body: 
+    NavBar
+    Route= / => Feed
+    Route= /login => Login
+    Route= /connections => Connections
+    Route= /profile => Profile 
