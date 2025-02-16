@@ -3,8 +3,13 @@ const connectDB =require("./config/database");
 const app = express(); 
 const cookieParser =require("cookie-parser");
 const userRouter = require("./routes/user");
+const cors = require("cors");
 
 // Here we use express.json middleware to parse the json Data
+app.use(cors({
+    origin: 'http://localhost:5173', 
+    credentials:true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

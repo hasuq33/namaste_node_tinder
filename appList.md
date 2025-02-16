@@ -30,6 +30,10 @@ Status: ignore, intrested , accepted , rejected
 - Add Navbar Component IN it
 - Create a BrowserRouter and > Routes > Route=/ Body > RouteChildren
 - Create the Outlet in Body Component and Footer 
+- Create a Login Page
+- Install Axios 
+- CORS - install cors in backend => add middleware to with configuration: with origin and credentials
+- Whenever you are making api calls so pass axios => {withCredentials:true }
 
 Body: 
     NavBar
