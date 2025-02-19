@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constant";
 const Login = () => {
     const [emailId , setEmialId ] = useState("");
     const [password , setPassword] = useState("");
+    const [error , setError ] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSubmit = async (ev)=>{
@@ -20,6 +21,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             navigate("/");
           } catch (error) {
+            setError(error?.response?.data)
             console.error(error);
           }
     }
@@ -41,6 +43,7 @@ const Login = () => {
                             </div>
                             <input autoComplete="false" onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder="Enter Your Password..." className="input input-bordered w-full max-w-xs" />
                         </label>
+                    <p className="text-red-500">{error}</p>
                     <div className="card-actions justify-start items-center">
                         <button className="btn btn-primary" type="submit" value="Submit" >Login</button>
                     </div>
