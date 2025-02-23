@@ -35,6 +35,12 @@ Status: ignore, intrested , accepted , rejected
 - CORS - install cors in backend => add middleware to with configuration: with origin and credentials
 - Whenever you are making api calls so pass axios => {withCredentials:true }
 - Install react-redux + @reduxjs/toolkit => configureStore => Provider => createSlice => add reducers to Store 
+- Logout Feature 
+- Get the feed and add feed in the store
+- Build the user Card on feed
+- See All the connections Page
+- See All My connections Requests Page 
+- Feature - Accept/Reject Connection Requests
 
 Body: 
     NavBar
