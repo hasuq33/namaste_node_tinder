@@ -41,6 +41,7 @@ Status: ignore, intrested , accepted , rejected
 - See All the connections Page
 - See All My connections Requests Page 
 - Feature - Accept/Reject Connection Requests
+- Send Intrested / Ignored request 
 
 Body: 
     NavBar
