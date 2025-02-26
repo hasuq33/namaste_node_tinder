@@ -43,6 +43,16 @@ Status: ignore, intrested , accepted , rejected
 - Feature - Accept/Reject Connection Requests
 - Send Intrested / Ignored request 
 
+Ngnix Istalltion
+
+-sudo apt install nginx
+-sudo systemctl start nginx
+-sudo systemctl enable nginx
+- Copy the code from dist folder to /var/www/html 
+-  sudo scp -r dist/* /var/www/html (File or Folder Copy Command)
+- Enable Port 80
+- Modify the Base URL
+
 Body: 
     NavBar
     Route= / => Feed
