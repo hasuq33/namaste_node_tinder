@@ -4,10 +4,11 @@ const app = express();
 const cookieParser =require("cookie-parser");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+require("dotenv").config()
 
 // Here we use express.json middleware to parse the json Data
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: process.env.WHITELIST_CORS, 
     credentials:true
 }));
 app.use(express.json());
